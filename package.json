@@ -1,0 +1,18 @@
+{
+  "name": "cpsc349-project3",
+  "version": "1.0.0",
+  "description": "CPSC 349 - Fall 2022 - Project 3",
+  "scripts": {
+    "dev": "browser-sync start --server --startPath /index.html --files '*.html,*.css,*.js'",
+    "tailwind": "npx tailwindcss -i ./css/input.css -o ./css/main.css --watch --poll",
+    "start": "npm-run-all --parallel dev tailwind",
+    "test": "standard && vnu --skip-non-html --Werror *.html"
+  },
+  "author": "Donald Novasky",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "npm-run-all": "^4.1.5",
+    "standard": "^17.0.0",
+    "tailwindcss": "^3.2.4"
+  }
+}
