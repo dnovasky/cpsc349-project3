@@ -1,0 +1,42 @@
+#yourScore {
+  text-align: center;
+}
+
+#opponentScore {
+  text-align: center;
+}
+
+.main-section {
+  display: flex;
+}
+
+.column {
+  flex: 50%;
+}
+
+#yourChoice {
+  justify-content: center;
+  margin: 0 auto;
+  width: 350px;
+  height: 350px;
+}
+
+#opponentChoice {
+  justify-content: center;
+  margin: 0 auto;
+  width: 350px;
+  height: 350px;
+}
+
+#choices {
+  display: flex;
+  justify-content: center;
+  justify-content: space-evenly;
+  margin-top: 50px;
+  height: 150px;
+}
+
+#choices img {
+  width: 150px;
+  height: 150px;
+}

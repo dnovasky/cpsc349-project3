@@ -4,26 +4,29 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Rock Paper Sciccors Project 3</title>
-    <link rel="stylesheet" type="text/css" href="/css/main.css">
-    <script type="module" src="/js/index.js"></script>
+    <title>Rock, Paper, Scissors</title>
+    <link rel="stylesheet" type="text/css" href="./css/main.css" />
+    <link rel="stylesheet" type="text/css" href="./css/style.css" />
+    <script type="module" src="./js/index.js"></script>
   </head>
 
-  <body>
+  <body class="bg-slate-700">
+    <header>
+      <h1 class="flex justify-center m-8 text-5xl">ROCK, PAPER, SCISSORS</h1>
+    </header>
     <div class="main-section">
       <div class="column">
-        <h1 id="yourScore">0</h1>
-        <img id="yourChoice">
+        <h1 id="yourScore" class="text-2xl my-3">Your Score: 0</h1>
+        <img id="yourChoice" />
       </div>
       <div class="column">
-        <h1 id="opponentScore">0</h1>
-        <img id="opponentChoice">
+        <h1 id="opponentScore" class="text-2xl my-3">Opponent's Score: 0</h1>
+        <img id="opponentChoice" />
       </div>
     </div>
-    <div class="main-section">
-      <div id="choices">
-      </div>
+    <div>
+      <div id="choices"></div>
     </div>
-    <scirpt src="index.js"></scirpt>
+    <scirpt src="./js/index.js"></scirpt>
   </body>
 </html>

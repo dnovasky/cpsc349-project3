@@ -33,51 +33,6 @@
 5. Use the user's configured `sans` font-feature-settings by default.
 */
 
-#yourScore {
-  text-align: center;
-}
-
-#opponentScore {
-  text-align: center;
-}
-
-.main-section {
-  display: flex;
-}
-
-.column {
-  flex: 50%;
-}
-
-#yourChoice {
-  margin-left: 30%;
-  background-color: transparent;
-  width: 480px;
-  height: 480px;
-}
-
-#opponentChoice {
-  margin-left: 30%;
-  background-color: transparent;
-  width: 480px;
-  height: 480px;
-}
-
-#choices {
-  margin-left: 35%;
-  margin-top: 200px;
-  background-color: transparent;
-  width: 600px;
-  height: 240px;
-  display: flex;
-  justify-content: space-between;
-}
-
-#choices img{
-  width:240px;
-  height:240px;
-}
-
 html {
   line-height: 1.5;
   /* 1 */
@@ -556,4 +511,53 @@ video {
   --tw-backdrop-opacity:  ;
   --tw-backdrop-saturate:  ;
   --tw-backdrop-sepia:  ;
+}
+
+.m-8 {
+  margin: 2rem;
+}
+
+.my-3 {
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.flex {
+  display: flex;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.bg-slate-700 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(51 65 85 / var(--tw-bg-opacity));
+}
+
+.bg-\[url\(\'bg\.jpg\'\)\] {
+  background-image: url('bg.jpg');
+}
+
+.bg-rps-bg {
+  background-image: url("/bg.jpg");;
+}
+
+.bg-cover {
+  background-size: cover;
+}
+
+.text-4xl {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+.text-5xl {
+  font-size: 3rem;
+  line-height: 1;
 }
