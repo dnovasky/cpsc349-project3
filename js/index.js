@@ -30,9 +30,8 @@ function selectChoice() {
   document.getElementById('opponentChoice').src = opponentChoice + '.png'
 
   const winner = selectWinner(yourChoice, opponentChoice)
-  if (winner) {
-    updateScore(winner)
-  }
+
+  updateScore(winner)
 }
 
 function selectWinner(yourChoice, opponentChoice) {
@@ -53,13 +52,20 @@ function selectWinner(yourChoice, opponentChoice) {
 }
 
 function updateScore(winner) {
+  let playerOne = document.querySelector('#yourScore')
+  let playerTwo = document.querySelector('#opponentScore')
   if (winner === 'Player1') {
     player1 += 1
-    document.querySelector('#yourScore').textContent = `Your Score: ${player1}`
-  } else {
+    playerOne.textContent = `Your Score: ${player1}`
+    playerOne.style.backgroundColor = 'green'
+    playerTwo.style.backgroundColor = 'red'
+  } else if (winner === 'Player2') {
     player2 += 1
-    document.querySelector(
-      '#opponentScore'
-    ).textContent = `Opponent's Score: ${player2}`
+    playerTwo.textContent = `Opponent's Score: ${player2}`
+    playerTwo.style.backgroundColor = 'green'
+    playerOne.style.backgroundColor = 'red'
+  } else {
+    playerTwo.style.backgroundColor = 'yellow'
+    playerOne.style.backgroundColor = 'yellow'
   }
 }
