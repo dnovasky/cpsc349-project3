@@ -5,7 +5,12 @@ let player2 = 0
 const choices = ['rock', 'paper', 'scissors']
 window.onload = start
 
+function initModal() {
+  document.querySelector('#modalToggle').click()
+}
+
 function start() {
+  initModal()
   for (let i = 0; i < 3; i++) {
     const choice = document.createElement('img')
     choice.id = choices[i]
@@ -17,7 +22,9 @@ function start() {
 
 function selectChoice() {
   yourChoice = this.id
-  document.getElementById('yourChoice').src = yourChoice + '.png'
+  let elem = document.getElementById('yourChoice')
+  elem.src = yourChoice + '.png'
+  elem.style.transform = 'scaleX(-1)'
 
   opponentChoice = choices[Math.floor(Math.random() * 3)]
   document.getElementById('opponentChoice').src = opponentChoice + '.png'
@@ -32,8 +39,6 @@ function selectWinner(yourChoice, opponentChoice) {
   let result = yourChoice + opponentChoice
   let winner = ''
   switch (result) {
-    // case 'rockrock', 'paperpaper', 'scissorsscissors':
-    //   winner = 'tie'
     case 'rockscissors':
     case 'paperrock':
     case 'scissorspaper':

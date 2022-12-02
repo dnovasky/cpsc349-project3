@@ -7,26 +7,64 @@
     <title>Rock, Paper, Scissors</title>
     <link rel="stylesheet" type="text/css" href="./css/main.css" />
     <link rel="stylesheet" type="text/css" href="./css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type="module" src="./js/index.js"></script>
   </head>
 
   <body class="bg-slate-700">
     <header>
-      <h1 class="flex justify-center m-8 text-5xl">ROCK, PAPER, SCISSORS</h1>
+      <h1 class="flex justify-center m-8 text-black text-5xl">ROCK, PAPER, SCISSORS</h1>
     </header>
-    <div class="main-section">
-      <div class="column">
-        <h1 id="yourScore" class="text-2xl my-3">Your Score: 0</h1>
-        <img id="yourChoice" />
+    <div id="gameView">
+      <div class="main-section p-8">
+        <div class="column">
+          <h1 id="yourScore" class="text-4xl my-3">Your Score: 0</h1>
+          <img id="yourChoice" />
+        </div>
+        <div class="column">
+          <h1 id="opponentScore" class="text-4xl my-3">Opponent's Score: 0</h1>
+          <img id="opponentChoice" />
+        </div>
       </div>
-      <div class="column">
-        <h1 id="opponentScore" class="text-2xl my-3">Opponent's Score: 0</h1>
-        <img id="opponentChoice" />
+      <div>
+        <div id="choices"></div>
       </div>
     </div>
-    <div>
-      <div id="choices"></div>
+    <a id='modalToggle' href="#gameSetupModal" data-toggle="modal"></a>
+    <div
+      class="modal"
+      id="gameSetupModal"
+      role="dialog"
+      aria-labelledby="myModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="m-header">
+            <button class="close" data-dismiss="modal">×</button>
+            <h2 class="myModalLabel mb-10">How many players?</h2>
+          </div>
+          <div class="setupChoices flex justify-center space-x-10 text-slate-900 text-3xl">
+              <button id='single-player' class="outline p-2">1 player</button>
+              <button id='two-player' class="outline p-2">2 players</button>
+            </div>
+                
+          </div>
+        </div>
+      </div>
     </div>
+
     <scirpt src="./js/index.js"></scirpt>
   </body>
 </html>
