@@ -1,3 +1,7 @@
+#column1 {
+  flex: 50%;
+}
+
 #column {
   flex: 50%;
 }

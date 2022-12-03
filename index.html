@@ -18,14 +18,18 @@
     </header>
     <div id="game-view">
       <div id="main-section" class="flex p-10">
-        <div id="column" class="pb-10 outline outline-black">
+        <div id="column1" class="pb-10 outline outline-black">
           <h1
             id="your-score"
             class="p-2 text-black text-5xl md:text-3xl sm:text-xl my-3 mb-10"
           >
             You: 0
           </h1>
-          <img id="your-choice" src="/cpsc349-project3/rps.png" />
+          <img
+            id="your-choice"
+            src="/cpsc349-project3/rps.png"
+            alt="Image of Paper, Rock, Scissor logo"
+          />
           <div id="player1-choices"></div>
         </div>
         <div id="column" class="pb-10 outline outline-black">
@@ -35,7 +39,11 @@
           >
             Opponent: 0
           </h1>
-          <img id="opponent-choice" src="/cpsc349-project3/rps.png" />
+          <img
+            id="opponent-choice"
+            src="/cpsc349-project3/rps.png"
+            alt="Image of Paper, Rock, Scissor logo"
+          />
           <div id="player2-choices"></div>
         </div>
       </div>
@@ -81,6 +89,43 @@
         </div>
       </div>
     </div>
-    <scirpt src="./js/index.js"></scirpt>
+    <div
+      id="winner-modal-container"
+      class="hidden absolute inset-0 bg-black bg-opacity-30 h-screen w-full flex justify-center items-start md:items-center pt-10 md:pt-0"
+    >
+      <div
+        id="winner-modal"
+        class="opacity-0 transform -translate-y-full scale-150 relative bg-white rounded shadow-lg transition-opacity transition-transform duration-300"
+      >
+        <button
+          id="close-win-modal"
+          class="absolute -top-3 -right-3 bg-red-500 hover:bg-red-600 text-2xl w-10 h-10 rounded-full focus:outline-none text-white"
+        >
+          &cross;
+        </button>
+        <div class="px-4 py-3 border-b border-gray-200">
+          <h2
+            id="winner-message"
+            class="p-2 text-xl font-semibold text-gray-600"
+          >
+            Placeholder
+          </h2>
+        </div>
+        <div id="replay" class="w-full p-3 space-x-4">
+          <button
+            id="yes"
+            class="m-2 p-4 rounded outline outline-slate-600 text-black hover:bg-slate-400"
+          >
+            Again?
+          </button>
+          <button
+            class="m-2 p-4 rounded outline outline-slate-600 text-black hover:bg-slate-400"
+          >
+            Quit!
+          </button>
+        </div>
+      </div>
+    </div>
+    <script src="./js/index.js"></script>
   </body>
 </html>

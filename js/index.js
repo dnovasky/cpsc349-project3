@@ -16,16 +16,15 @@ const btns2 = document.querySelector('#player2-choices')
 const modal = document.querySelector('#modal')
 
 window.onload = start
-window.onunload = save
 
-function start() {
-  if (localStorage.getItem('numPlayers')) {
-    numPlayers = Number(localStorage.getItem('numPlayers'))
-    player1 = Number(localStorage.getItem('player1'))
-    player2 = Number(localStorage.getItem('player2'))
-    lastWinner = localStorage.getItem('lastWin')
+function start () {
+  if (window.localStorage.getItem('numPlayers')) {
+    numPlayers = Number(window.localStorage.getItem('numPlayers'))
+    player1 = Number(window.localStorage.getItem('player1'))
+    player2 = Number(window.localStorage.getItem('player2'))
+    lastWinner = window.localStorage.getItem('lastWin')
     playerOne.textContent = `You: ${player1}`
-    playerTwo.textContent = `You: ${player2}`
+    playerTwo.textContent = `Opponent: ${player2}`
     if (lastWinner === 'Player1') {
       playerOne.style.backgroundColor = 'green'
       playerTwo.style.backgroundColor = 'red'
@@ -42,64 +41,7 @@ function start() {
   }
 }
 
-function selectChoice() {
-  const selected = this.id
-  if (selected.slice(-1) === '1') {
-    yourChoice = selected
-    yourChoiceElement.src = 'done.png'
-    toggleButtons(false, btns1)
-  } else {
-    opponentChoice = selected
-    oppChoiceElement.src = 'done.png'
-    toggleButtons(false, btns2)
-  }
-  if (numPlayers === 1) {
-    opponentChoice = choices[Math.floor(Math.random() * 3)] + 2
-  }
-  processChoices()
-}
-
-function selectWinner(yourChoice, opponentChoice) {
-  const result = yourChoice + opponentChoice
-  let winner = ''
-  switch (result) {
-    case 'rock1scissors2':
-    case 'paper1rock2':
-    case 'scissors1paper2':
-    case 'rock1':
-    case 'paper1':
-    case 'scissors1':
-      winner = 'Player1'
-      break
-    case 'rock1paper2':
-    case 'paper1scissors2':
-    case 'scissors1rock2':
-    case 'scissors2':
-    case 'rock2':
-    case 'paper2':
-      winner = 'Player2'
-  }
-  return winner
-}
-
-function updateScore(winner) {
-  if (winner === 'Player1') {
-    player1 += 1
-    playerOne.textContent = `You: ${player1}`
-    playerOne.style.backgroundColor = 'green'
-    playerTwo.style.backgroundColor = 'red'
-  } else if (winner === 'Player2') {
-    player2 += 1
-    playerTwo.textContent = `Opponent: ${player2}`
-    playerTwo.style.backgroundColor = 'green'
-    playerOne.style.backgroundColor = 'red'
-  } else {
-    playerTwo.style.backgroundColor = 'yellow'
-    playerOne.style.backgroundColor = 'yellow'
-  }
-}
-
-function initModal(open) {
+function initModal (open) {
   document.querySelector('#close-modal').addEventListener('click', (e) => {
     initModal(false)
   })
@@ -123,33 +65,11 @@ function initModal(open) {
   }
 }
 
-function initChoices() {
-  for (let i = 0; i < 3; i++) {
-    const choice = document.createElement('img')
-    choice.classList.add(
-      'rounded-full',
-      'hover:shadow-2xl',
-      'active:ring',
-      'active:ring-green-700',
-      'sm:p-2',
-      'h-16',
-      'w-16',
-      'lg:h-36',
-      'lg:w-36',
-      'md:h-28',
-      'md:w-28',
-      'sm:h-20',
-      'sm:w-20'
-    )
-    choice.id = choices[i] + 1
-    choice.src = choices[i] + '.png'
-    document.getElementById('player1-choices').append(choice)
-    choice.addEventListener('click', selectChoice)
-  }
-  if (numPlayers === 2) {
+function initChoices () {
+  if (!document.querySelector(`#${choices[0] + 1}`)) {
     for (let i = 0; i < 3; i++) {
-      const choice2 = document.createElement('img')
-      choice2.classList.add(
+      const choice = document.createElement('img')
+      choice.classList.add(
         'rounded-full',
         'hover:shadow-2xl',
         'active:ring',
@@ -164,15 +84,58 @@ function initChoices() {
         'sm:h-20',
         'sm:w-20'
       )
-      choice2.id = choices[i] + 2
-      choice2.src = choices[i] + '.png'
-      document.getElementById('player2-choices').append(choice2)
-      choice2.addEventListener('click', selectChoice)
+      choice.id = choices[i] + 1
+      choice.src = choices[i] + '.png'
+      btns1.append(choice)
+      choice.addEventListener('click', selectChoice)
+    }
+  }
+  if (numPlayers === 2) {
+    if (!document.querySelector(`#${choices[0] + 2}`)) {
+      for (let i = 0; i < 3; i++) {
+        const choice2 = document.createElement('img')
+        choice2.classList.add(
+          'rounded-full',
+          'hover:shadow-2xl',
+          'active:ring',
+          'active:ring-green-700',
+          'sm:p-2',
+          'h-16',
+          'w-16',
+          'lg:h-36',
+          'lg:w-36',
+          'md:h-28',
+          'md:w-28',
+          'sm:h-20',
+          'sm:w-20'
+        )
+        choice2.id = choices[i] + 2
+        choice2.src = choices[i] + '.png'
+        btns2.append(choice2)
+        choice2.addEventListener('click', selectChoice)
+      }
     }
   }
 }
 
-function processChoices() {
+function selectChoice () {
+  const selected = this.id
+  if (selected.slice(-1) === '1') {
+    yourChoice = selected
+    yourChoiceElement.src = 'done.png'
+    toggleButtons(false, btns1)
+  } else {
+    opponentChoice = selected
+    oppChoiceElement.src = 'done.png'
+    toggleButtons(false, btns2)
+  }
+  if (numPlayers === 1) {
+    opponentChoice = choices[Math.floor(Math.random() * 3)] + 2
+  }
+  processChoices()
+}
+
+function processChoices () {
   if (yourChoice && opponentChoice) {
     yourChoiceElement.src = yourChoice.slice(0, -1) + '.png'
     if (!yourChoiceElement.src.textContent === 'done.png') {
@@ -184,8 +147,7 @@ function processChoices() {
     lastWinner = winner
     updateScore(winner)
     if (player1 >= 5 || player2 >= 5) {
-      alert(`${lastWinner} is the WINNER!`)
-      restart()
+      initWinnerModal(true, lastWinner)
     } else {
       setTimeout(() => {
         yourChoice = ''
@@ -199,23 +161,97 @@ function processChoices() {
   }
 }
 
-;[...numPlayersElement.children].forEach((btn) => {
+function selectWinner (yourChoice, opponentChoice) {
+  const result = yourChoice + opponentChoice
+  let winner = ''
+  switch (result) {
+    case 'rock1scissors2':
+    case 'paper1rock2':
+    case 'scissors1paper2':
+    case 'rock1':
+    case 'paper1':
+    case 'scissors1':
+      winner = 'Player1'
+      break
+    case 'rock1paper2':
+    case 'paper1scissors2':
+    case 'scissors1rock2':
+    case 'scissors2':
+    case 'rock2':
+    case 'paper2':
+      winner = 'Player2'
+  }
+  return winner
+}
+
+function updateScore (winner) {
+  if (winner === 'Player1') {
+    player1 += 1
+    playerOne.textContent = `You: ${player1}`
+    playerOne.style.backgroundColor = 'green'
+    playerTwo.style.backgroundColor = 'red'
+  } else if (winner === 'Player2') {
+    player2 += 1
+    playerTwo.textContent = `Opponent: ${player2}`
+    playerTwo.style.backgroundColor = 'green'
+    playerOne.style.backgroundColor = 'red'
+  } else {
+    playerTwo.style.backgroundColor = 'yellow'
+    playerOne.style.backgroundColor = 'yellow'
+  }
+  save()
+}
+
+function initWinnerModal (open) {
+  document.querySelector('#close-win-modal').addEventListener('click', (e) => {
+    initWinnerModal(false)
+  })
+
+  const modalCl = document.querySelector('#winner-modal').classList
+  document.querySelector(
+    '#winner-message'
+  ).textContent = `${lastWinner} is the winner!`
+
+  if (open) {
+    document.querySelector('#winner-modal-container').classList.remove('hidden')
+    setTimeout(() => {
+      modalCl.remove('opacity-0')
+      modalCl.remove('-translate-y-full')
+      modalCl.remove('scale-150')
+    }, 100)
+  } else {
+    modalCl.add('-translate-y-full')
+    setTimeout(() => {
+      modalCl.add('opacity-0')
+      modalCl.add('scale-150')
+    }, 100)
+    setTimeout(
+      () =>
+        document
+          .querySelector('#winner-modal-container')
+          .classList.add('hidden'),
+      300
+    )
+  }
+}
+
+const replay = document.querySelector('#replay')
+;[...replay.children].forEach((btn) => {
   btn.addEventListener('click', (e) => {
-    if (btn.id === '1') {
-      numPlayers = 1
+    if (btn.id === 'yes') {
+      restart(true)
     } else {
-      numPlayers = 2
+      restart(false)
     }
-    initModal(false)
-    initChoices()
+    initWinnerModal(false)
   })
 })
 
-document.querySelector('#restart').addEventListener('click', () => {
-  restart()
+document.querySelector('#restart').addEventListener('click', (e) => {
+  restart(false)
 })
 
-function toggleButtons(enabled, btns) {
+function toggleButtons (enabled, btns) {
   btns = [...btns.children]
   if (enabled) {
     btns.forEach((btn) => {
@@ -228,21 +264,34 @@ function toggleButtons(enabled, btns) {
   }
 }
 
-function save() {
-  localStorage.setItem('numPlayers', numPlayers.toString())
-  localStorage.setItem('player1', player1.toString())
-  localStorage.setItem('player2', player2.toString())
-  localStorage.setItem('lastWin', lastWinner)
+const choiceButtons = Array.from([...numPlayersElement.children])
+choiceButtons.forEach((btn) => {
+  btn.addEventListener('click', (e) => {
+    if (btn.id === '1') {
+      numPlayers = 1
+    } else {
+      numPlayers = 2
+    }
+    initChoices()
+    initModal(false)
+  })
+})
+
+function save () {
+  window.localStorage.setItem('numPlayers', numPlayers.toString())
+  window.localStorage.setItem('player1', player1.toString())
+  window.localStorage.setItem('player2', player2.toString())
+  window.localStorage.setItem('lastWin', lastWinner)
 }
 
-function restart() {
+function restart (yes) {
+  window.localStorage.clear()
   player1 = 0
   player2 = 0
-  numPlayers = ''
   yourChoice = ''
   opponentChoice = ''
-  playerOne.textContent = `You: 0`
-  playerTwo.textContent = `Opponent: 0`
+  playerOne.textContent = 'You: 0'
+  playerTwo.textContent = 'Opponent: 0'
   playerTwo.style.backgroundColor = ''
   playerOne.style.backgroundColor = ''
   yourChoiceElement.src = 'rps.png'
@@ -250,5 +299,10 @@ function restart() {
   lastWinner = ''
   btns1.innerHTML = ''
   btns2.innerHTML = ''
-  initModal(true)
+  if (yes) {
+    initChoices()
+  } else {
+    numPlayers = 0
+    initModal()
+  }
 }
