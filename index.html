@@ -7,65 +7,80 @@
     <title>Rock, Paper, Scissors</title>
     <link rel="stylesheet" type="text/css" href="./css/main.css" />
     <link rel="stylesheet" type="text/css" href="./css/style.css" />
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-      crossorigin="anonymous"
-    />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type="module" src="./js/index.js"></script>
   </head>
 
-  <body class="bg-slate-700">
+  <body class="text-center bg-slate-700">
     <header>
-      <h1 class="flex justify-center m-8 text-black text-7xl">ROCK, PAPER, SCISSORS</h1>
+      <h1 class="flex justify-center m-8 text-black text-3xl md:text-5xl">
+        ROCK, PAPER, SCISSORS
+      </h1>
     </header>
-    <div id="gameView">
-      <div class="main-section p-10">
-        <div class="column pb-10 outline outline-black">
-          <h1 id="yourScore" class="text-black text-5xl my-3 mb-10">You: 0</h1>
-          <img id="yourChoice" src='/rps.png'/>
-          <div id="choices"></div>
+    <div id="game-view">
+      <div id="main-section" class="flex p-10">
+        <div id="column" class="pb-10 outline outline-black">
+          <h1
+            id="your-score"
+            class="p-2 text-black text-5xl md:text-3xl sm:text-xl my-3 mb-10"
+          >
+            You: 0
+          </h1>
+          <img id="your-choice" src="/rps.png" />
+          <div id="player1-choices"></div>
         </div>
-        <div class="column pb-10 outline outline-black">
-          <h1 id="opponentScore" class="text-black text-5xl my-3 mb-10">Opponent: 0</h1>
-          <img id="opponentChoice" src='/rps.png'/>
+        <div id="column" class="pb-10 outline outline-black">
+          <h1
+            id="opponent-score"
+            class="p-2 text-black text-5xl md:text-3xl sm:text-xl my-3 mb-10"
+          >
+            Opponent: 0
+          </h1>
+          <img id="opponent-choice" src="/rps.png" />
+          <div id="player2-choices"></div>
         </div>
       </div>
-      <div>
-        <div id="choices"></div>
-      </div>
+      <a
+        id="restart"
+        class="text-center text-black hover:outline hover:bg-red-700 p-2 text-black text-5xl md:text-3xl sm:text-xl my-3 mb-10"
+        href=""
+        >RESTART
+      </a>
     </div>
-    <a id='modalToggle' href="#gameSetupModal" data-toggle="modal"></a>
     <div
-      class="modal"
-      id="gameSetupModal"
-      role="dialog"
-      aria-labelledby="myModalLabel"
-      aria-hidden="true"
+      id="modal-container"
+      class="hidden absolute inset-0 bg-black bg-opacity-30 h-screen w-full flex justify-center items-start md:items-center pt-10 md:pt-0"
     >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="m-header">
-            <button class="close" data-dismiss="modal">×</button>
-            <h2 class="myModalLabel text-black mb-10">How many players?</h2>
-          </div>
-          <div class="setupChoices flex justify-center space-x-10 text-slate-900 text-3xl">
-              <button id='single-player' class="text-black outline p-2">1 player</button>
-              <button id='two-player' class="text-black outline p-2">2 players</button>
-            </div>
-                
-          </div>
+      <div
+        id="modal"
+        class="opacity-0 transform -translate-y-full scale-150 relative bg-white rounded shadow-lg transition-opacity transition-transform duration-300"
+      >
+        <button
+          id="close-modal"
+          class="absolute -top-3 -right-3 bg-red-500 hover:bg-red-600 text-2xl w-10 h-10 rounded-full focus:outline-none text-white"
+        >
+          &cross;
+        </button>
+        <div class="px-4 py-3 border-b border-gray-200">
+          <h2 class="p-2 text-xl font-semibold text-gray-600">
+            How many players?
+          </h2>
+        </div>
+        <div id="players-num" class="w-full p-3 space-x-4">
+          <button
+            id="1"
+            class="m-2 p-4 rounded outline outline-slate-600 text-black hover:bg-slate-400"
+          >
+            1 Player
+          </button>
+          <button
+            id="2"
+            class="m-2 p-4 rounded outline outline-slate-600 text-black hover:bg-slate-400"
+          >
+            2 Player
+          </button>
         </div>
       </div>
     </div>
-
     <scirpt src="./js/index.js"></scirpt>
   </body>
 </html>
